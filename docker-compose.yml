@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+    api:
+        build:
+            context: "./simple_api/"
+        container_name: 'simple-api'
+        restart: 'always'
+        volumes: 
+            - ./simple_api/data:/data
+        ports: 
+            - 5000:5000
+    website:
+        image: php:apache
+        depends_on: 
+            - api
+        volumes: 
+            - ./website:/var/www/html
+        ports: 
+            - 8080:80
+            - 8443:443
+        environment: 
+            USERNAME: toto
+            PASSWORD: python
