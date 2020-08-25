@@ -12,6 +12,8 @@ services:
             - 5000:5000
     website:
         image: php:apache
+        container_name: 'website'
+        restart: 'always'
         depends_on: 
             - api
         volumes: 
